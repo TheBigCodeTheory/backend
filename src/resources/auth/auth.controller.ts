@@ -11,6 +11,9 @@ export class AuthController {
   register(@Body() createAuthDto: CreateAuthDto) {
     return this.authService.register(createAuthDto);
   }
+  // TODO Utilizar passport passwordless para login. No se si handlea todo en un solo endpoint (cosa que veo raro que sea asi)
+  // TODO Si no se handlea todo en un endpoint, crear otro de login/callback para cuando el user inserte el codigo
+  //
 
   // @Version('1')
   // @UseGuards(LocalAuthGuard)
@@ -18,10 +21,4 @@ export class AuthController {
   // login(@Request() req, @Body() generateCodeDto: GenerateCodeDto) {
   //   return this.authService.login(req.user);
   // }
-
-  @Version('1')
-  @Get('/check')
-  check() {
-    return { message: 'healt check' };
-  }
 }

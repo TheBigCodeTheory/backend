@@ -25,6 +25,7 @@ export class AuthRepository {
   }
   async login(email: string, password: string): Promise<Auth> {
     try {
+      //TODO reemplazar esta logica que es para password, no passwordless.
       const auth = await this.authModel
         .findOne({
           email: email,
