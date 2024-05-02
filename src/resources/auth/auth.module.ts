@@ -20,7 +20,7 @@ import { jwtSecret } from './passport/constant';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService, AuthRepository],
   exports: [AuthService, AuthRepository, MongooseModule],
 })
 export class AuthModule {}
