@@ -6,11 +6,11 @@ import { GenerateCodeDto } from './dto/send-email.dto';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
-  @Version('1')
-  @Post('/register')
-  register(@Body() createAuthDto: CreateAuthDto) {
-    return this.authService.register(createAuthDto);
-  }
+  // @Version('1')
+  // @Post('/register')
+  // register(@Body() createAuthDto: CreateAuthDto) {
+  //   return this.authService.register(createAuthDto);
+  // }
 
   // @Version('1')
   // @UseGuards(LocalAuthGuard)
