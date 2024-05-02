@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Request, Version } from '@nestjs/common';
+import { Body, Controller, Get, Post, Request, Version } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { GenerateCodeDto } from './dto/send-email.dto';
@@ -12,10 +12,16 @@ export class AuthController {
     return this.authService.register(createAuthDto);
   }
 
-  @Version('1')
+  // @Version('1')
   // @UseGuards(LocalAuthGuard)
-  @Post('/login')
-  login(@Request() req, @Body() generateCodeDto: GenerateCodeDto) {
-    return this.authService.login(req.user);
+  // @Post('/login')
+  // login(@Request() req, @Body() generateCodeDto: GenerateCodeDto) {
+  //   return this.authService.login(req.user);
+  // }
+
+  @Version('1')
+  @Get('/check')
+  check() {
+    return { message: 'healt check' };
   }
 }
