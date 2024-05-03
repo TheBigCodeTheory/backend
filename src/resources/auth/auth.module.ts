@@ -8,6 +8,9 @@ import { AuthService } from './auth.service';
 import { Auth, AuthSchema } from './entities/auth.entity';
 import { jwtSecret } from './passport/constant';
 import { MailService } from '../mail/mail.service';
+import { UserService } from '../user/user.service';
+import { UserRepository } from '../user/user.repository';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
@@ -19,9 +22,10 @@ import { MailService } from '../mail/mail.service';
         signOptions: { expiresIn: '36000s' },
       }),
     }),
+    UserModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, AuthRepository, MailService],
+  providers: [AuthService, AuthRepository, MailService, UserService],
   exports: [AuthService, AuthRepository, MongooseModule],
 })
 export class AuthModule {}

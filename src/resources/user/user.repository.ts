@@ -7,9 +7,9 @@ import { CreateUserDto } from './dto/create-user.dto';
 export class UserRepository {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async create(createUserDto: CreateUserDto): Promise<User> {
+  async create(authId: string, createUserDto: CreateUserDto): Promise<User> {
     try {
-      const user = new this.userModel(createUserDto);
+      const user = new this.userModel({ auth: authId, ...createUserDto });
       return await user.save();
     } catch (error) {
       if (error.code === 11000) {

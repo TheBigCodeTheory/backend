@@ -8,7 +8,8 @@ export class CreateAuthDto {
 
   @ApiProperty({ example: 'Eze', required: true })
   @IsString()
-  name: string;
+  firstname: string;
+
   @ApiProperty({ example: 'Villa', required: false })
   @IsString()
   lastname: string;

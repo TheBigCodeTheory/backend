@@ -10,13 +10,16 @@ export class User extends Document {
   @IsString()
   @Prop({ required: true })
   firstname: string;
+
   @IsString()
   @Prop({ required: false })
   lastname: string;
+
   @IsEmail()
-  @Prop({ required: true })
+  @Prop({ unique: true, required: true })
   email: string;
-  @Prop({ type: Types.ObjectId, ref: 'Auth' })
+
+  @Prop({ uique: true, type: Types.ObjectId, ref: 'Auth' })
   auth: Auth;
 }
 
