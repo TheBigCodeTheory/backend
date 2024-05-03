@@ -3,6 +3,7 @@ import { UserRepository } from './user.repository';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { MongoObjectId } from 'src/lib/common/types';
 
 @Injectable()
 export class UserService {
@@ -10,6 +11,10 @@ export class UserService {
 
   async create(authId: string, createUserDto: CreateUserDto): Promise<User> {
     return await this.userRepository.create(authId, createUserDto);
+  }
+
+  async findAuth(auth: MongoObjectId) {
+    return await this.userRepository.findAuth(auth);
   }
 
   findAll() {

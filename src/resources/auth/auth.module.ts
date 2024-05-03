@@ -7,10 +7,9 @@ import { AuthRepository } from './auth.repository';
 import { AuthService } from './auth.service';
 import { Auth, AuthSchema } from './entities/auth.entity';
 import { jwtSecret } from './passport/constant';
-import { MailService } from '../mail/mail.service';
 import { UserService } from '../user/user.service';
-import { UserRepository } from '../user/user.repository';
 import { UserModule } from '../user/user.module';
+import { MailService } from '../mail/mail.service';
 
 @Module({
   imports: [

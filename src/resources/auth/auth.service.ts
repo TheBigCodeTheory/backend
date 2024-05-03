@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { AuthRepository } from './auth.repository';
-import { Auth } from './entities/auth.entity';
-import { MailService } from '../mail/mail.service';
-import { isCodeExpired } from '../utils/code';
 import { JwtService } from '@nestjs/jwt';
-import { CreateAuthDto } from './dto/create-auth.dto';
 import { UserService } from '../user/user.service';
+import { CreateUserDto } from '../user/dto/create-user.dto';
+import { GenerateCodeDto } from './dto/send-email.dto';
+import { MailService } from '../mail/mail.service';
 import { User } from '../user/entities/user.entity';
+import { GetTokenDto } from './dto/get-token';
 
 @Injectable()
 export class AuthService {
@@ -17,17 +17,33 @@ export class AuthService {
     private readonly userService: UserService,
   ) {}
 
-  async register(createAuthDto: CreateAuthDto): Promise<User> {
-    const auth = await this.authRepository.register(createAuthDto.email);
-    return await this.userService.create(auth!._id, createAuthDto);
+  async register(createUserDto: CreateUserDto): Promise<User> {
+    const code = this.generateCode();
+    const auth = await this.authRepository.create(createUserDto.email, code);
+    const user = await this.userService.create(auth!._id, createUserDto);
+    await this.mailService.sendVerificationCode(createUserDto!.email, code);
+    return user;
   }
 
-  async login(destination: string) {
+  async sendVerificationCode(generateCode: GenerateCodeDto): Promise<void> {
+    const { email } = generateCode;
     const code = this.generateCode();
-    // todo updatear el code en el siguiente repository.
-    return await this.authRepository.login(destination, code);
+    await this.authRepository.updateCode(email, code);
+    return await this.mailService.sendVerificationCode(email, code);
   }
+
+  async getToken(
+    getTokenDto: GetTokenDto,
+  ): Promise<{ token: string; user: any }> {
+    const auth = await this.authRepository.getToken(getTokenDto);
+    const user = await this.userService.findAuth(auth._id);
+    const payload = { id: user._id, name: user.firstname };
+    return { token: this.jwtService.sign(payload), user: payload };
+  }
+
   private generateCode(): string {
-    return Math.floor(Math.random() * 10000).toString();
+    return String(
+      Math.ceil(Math.random() * 9) * 100000 + Math.ceil(Math.random() * 9999),
+    );
   }
 }
