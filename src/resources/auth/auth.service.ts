@@ -1,10 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { AuthRepository } from './auth.repository';
+import { Auth } from './entities/auth.entity';
+import { MailService } from '../mail/mail.service';
+import { isCodeExpired } from '../utils/code';
+import { JwtService } from '@nestjs/jwt';
 import { CreateAuthDto } from './dto/create-auth.dto';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly authRepository: AuthRepository) {}
+  constructor(
+    private readonly authRepository: AuthRepository,
+    private readonly mailService: MailService,
+    private readonly jwtService: JwtService,
+    // private readonly userService: UserService,
+  ) {}
 
   async register(createAuthDto: CreateAuthDto) {
     const auth = await this.authRepository.register(createAuthDto.email);
