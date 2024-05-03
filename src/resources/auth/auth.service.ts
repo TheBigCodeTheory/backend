@@ -37,7 +37,7 @@ export class AuthService {
   ): Promise<{ token: string; user: any }> {
     const auth = await this.authRepository.getToken(getTokenDto);
     const user = await this.userService.findAuth(auth._id);
-    const payload = { id: user._id, name: user.firstname };
+    const payload = { id: String(user._id), name: user.firstname };
     return { token: this.jwtService.sign(payload), user: payload };
   }
 
