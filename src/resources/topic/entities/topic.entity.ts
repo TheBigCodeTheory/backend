@@ -15,7 +15,7 @@ export class Topic extends Document {
   level: number;
   @Prop({ required: true })
   color: string; // enum later
-  @Prop({ type: [{ type: Types.ObjectId, ref: 'Question' }] })
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Question' }], default: [] })
   questions: Question[];
 }
 

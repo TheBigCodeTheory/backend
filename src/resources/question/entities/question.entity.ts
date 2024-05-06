@@ -6,12 +6,18 @@ export type QuestionDocument = HydratedDocument<Question>;
 
 @Schema({ timestamps: true })
 export class Question extends Document {
-  @Prop({ required: true, unique: true })
+  @Prop({ required: true, unique: true, type: { eng: String, spa: String } })
   name: {
     eng: string;
     spa: string;
   };
-  @Prop({ required: true })
+  @Prop({
+    required: true,
+    type: {
+      eng: String,
+      spa: String,
+    },
+  })
   questionDescription: {
     eng: string;
     spa: string;
