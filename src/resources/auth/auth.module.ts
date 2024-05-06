@@ -9,7 +9,7 @@ import { Auth, AuthSchema } from './entities/auth.entity';
 import { jwtSecret } from './passport/constant';
 import { UserService } from '../user/user.service';
 import { UserModule } from '../user/user.module';
-import { MailService } from '../mail/mail.service';
+import { MailerService } from '../mail/mailer.service';
 
 @Module({
   imports: [
@@ -24,7 +24,7 @@ import { MailService } from '../mail/mail.service';
     UserModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, AuthRepository, MailService, UserService],
+  providers: [AuthService, AuthRepository, UserService, MailerService],
   exports: [AuthService, AuthRepository, MongooseModule],
 })
 export class AuthModule {}
