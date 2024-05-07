@@ -3,7 +3,6 @@ import { CreateTopicDto } from './dto/create-topic.dto';
 import { UpdateTopicDto } from './dto/update-topic.dto';
 import { TopicRepository } from './topic.repository';
 import { ObjectId } from 'mongoose';
-import { Question } from '../question/entities/question.entity';
 
 @Injectable()
 export class TopicService {

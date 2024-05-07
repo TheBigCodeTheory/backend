@@ -26,14 +26,6 @@ export class QuestionService {
     return await this.questionRepository.insertNewChoice(questionId, choiceId);
   }
   findAll() {
-    const a = ' dato';
-    {
-      const a = ' dato2';
-      {
-        const a = ' dato3';
-        a.concat('ssd');
-      }
-    }
     return `This action returns all question`;
   }
 

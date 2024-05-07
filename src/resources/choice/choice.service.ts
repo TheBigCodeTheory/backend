@@ -12,13 +12,13 @@ export class ChoiceService {
     private readonly questionService: QuestionService,
   ) {}
   async create(createChoiceDto: CreateChoiceDto, questionId: ObjectId) {
-    const choice = await this.choiceRepository.create(
+    const newChoice = await this.choiceRepository.create(
       createChoiceDto,
       questionId,
     );
-    const id = choice._id;
+    const id = newChoice._id;
     await this.questionService.insertNewChoice(questionId, id);
-    return 'This action adds a new choice';
+    return newChoice;
   }
 
   findAll() {
