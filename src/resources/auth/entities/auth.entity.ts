@@ -13,9 +13,6 @@ export class Auth extends Document {
   @IsString()
   @Prop({ required: false })
   code: string;
-
-  @Prop({ required: false })
-  magicLink: string;
 }
 
 export const AuthSchema = SchemaFactory.createForClass(Auth);
