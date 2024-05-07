@@ -4,12 +4,6 @@ import { ObjectId } from 'mongoose';
 
 export class CreateQuestionDto {
   @ApiProperty({
-    example: '66351469fa5b9a8bfad2a7df',
-    required: true,
-  })
-  topicId: ObjectId;
-
-  @ApiProperty({
     type: Object,
     example: `eng: basic list, spa: lista basica`,
   })

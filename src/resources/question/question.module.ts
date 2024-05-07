@@ -21,5 +21,6 @@ import { TopicModule } from '../topic/topic.module';
     MongooseModule,
     TopicService,
   ],
+  exports: [QuestionService, QuestionRepository, MongooseModule],
 })
 export class QuestionModule {}

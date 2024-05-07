@@ -10,6 +10,9 @@ export class Choice extends Document {
     eng: string;
     spa: string;
   };
+
+  @Prop({ required: true })
+  correct: boolean;
 }
 
 export const ChoiceSchema = SchemaFactory.createForClass(Choice);

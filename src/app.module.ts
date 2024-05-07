@@ -7,6 +7,8 @@ import { QuestionModule } from './resources/question/question.module';
 import { TopicModule } from './resources/topic/topic.module';
 import { TopicsQuestionsHistoryModule } from './resources/topics-questions-history/topics-questions-history.module';
 import { UserQuestionChoiceModule } from './resources/user-question-choice/user-question-choice.module';
+import { AuthModule } from './resources/auth/auth.module';
+import { UserModule } from './resources/user/user.module';
 
 @Module({
   imports: [
@@ -20,6 +22,9 @@ import { UserQuestionChoiceModule } from './resources/user-question-choice/user-
     TopicModule,
     UserQuestionChoiceModule,
     TopicsQuestionsHistoryModule,
+
+    AuthModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],

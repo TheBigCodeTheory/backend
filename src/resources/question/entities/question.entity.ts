@@ -26,8 +26,6 @@ export class Question extends Document {
   type: string; // enum text,code,img
   @Prop({ type: [{ type: Types.ObjectId, ref: 'Choice' }], default: [] })
   choices: Choice[];
-  @Prop({ type: [{ type: Types.ObjectId, ref: 'Choice' }], default: [] })
-  correctChoices: Choice[];
 }
 
 export const QuestionSchema = SchemaFactory.createForClass(Question);

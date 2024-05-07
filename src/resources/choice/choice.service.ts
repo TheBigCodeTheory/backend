@@ -1,10 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { CreateChoiceDto } from './dto/create-choice.dto';
 import { UpdateChoiceDto } from './dto/update-choice.dto';
+import { ChoiceRepository } from './choice.repository';
+import { QuestionService } from '../question/question.service';
+import { ObjectId } from 'mongoose';
 
 @Injectable()
 export class ChoiceService {
-  create(createChoiceDto: CreateChoiceDto) {
+  constructor(
+    private readonly choiceRepository: ChoiceRepository,
+    private readonly questionService: QuestionService,
+  ) {}
+  async create(createChoiceDto: CreateChoiceDto, questionId: ObjectId) {
+    const choice = await this.choiceRepository.create(
+      createChoiceDto,
+      questionId,
+    );
+    const id = choice._id;
+    await this.questionService.insertNewChoice(questionId, id);
     return 'This action adds a new choice';
   }
 

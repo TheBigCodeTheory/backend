@@ -3,6 +3,7 @@ import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { QuestionRepository } from './question.repository';
 import { TopicService } from '../topic/topic.service';
+import { ObjectId } from 'mongoose';
 
 @Injectable()
 export class QuestionService {
@@ -11,15 +12,28 @@ export class QuestionService {
     private readonly topicService: TopicService,
   ) {}
   // todo add transaction.
-  async create(createQuestionDto: CreateQuestionDto) {
-    const newQuestion = await this.questionRepository.create(createQuestionDto);
-    const topicId = createQuestionDto.topicId;
+  async create(createQuestionDto: CreateQuestionDto, topicId: ObjectId) {
+    const newQuestion = await this.questionRepository.create(
+      createQuestionDto,
+      topicId,
+    );
+
     const id = newQuestion._id;
     await this.topicService.insertNewQuestion(topicId, id);
     return newQuestion;
   }
-
+  async insertNewChoice(questionId: ObjectId, choiceId: ObjectId) {
+    return await this.questionRepository.insertNewChoice(questionId, choiceId);
+  }
   findAll() {
+    const a = ' dato';
+    {
+      const a = ' dato2';
+      {
+        const a = ' dato3';
+        a.concat('ssd');
+      }
+    }
     return `This action returns all question`;
   }
 

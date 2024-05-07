@@ -11,14 +11,18 @@ import {
 import { QuestionService } from './question.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
+import { ObjectId } from 'mongoose';
 
 @Controller('question')
 export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
   @Version('1')
-  @Post()
-  create(@Body() createQuestionDto: CreateQuestionDto) {
-    return this.questionService.create(createQuestionDto);
+  @Post('/:topicId')
+  create(
+    @Param('topicId') topicId: ObjectId,
+    @Body() createQuestionDto: CreateQuestionDto,
+  ) {
+    return this.questionService.create(createQuestionDto, topicId);
   }
   @Version('1')
   @Get()
@@ -26,7 +30,7 @@ export class QuestionController {
     return this.questionService.findAll();
   }
   @Version('1')
-  @Get(':i  d')
+  @Get(':id')
   findOne(@Param('id') id: string) {
     return this.questionService.findOne(+id);
   }

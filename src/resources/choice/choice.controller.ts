@@ -1,15 +1,29 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Version,
+} from '@nestjs/common';
 import { ChoiceService } from './choice.service';
 import { CreateChoiceDto } from './dto/create-choice.dto';
 import { UpdateChoiceDto } from './dto/update-choice.dto';
+import { ObjectId } from 'mongoose';
 
 @Controller('choice')
 export class ChoiceController {
   constructor(private readonly choiceService: ChoiceService) {}
 
+  @Version('1')
   @Post()
-  create(@Body() createChoiceDto: CreateChoiceDto) {
-    return this.choiceService.create(createChoiceDto);
+  create(
+    @Param('questionId') questionId: ObjectId,
+    @Body() createChoiceDto: CreateChoiceDto,
+  ) {
+    return this.choiceService.create(createChoiceDto, questionId);
   }
 
   @Get()
