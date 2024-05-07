@@ -27,8 +27,16 @@ export class QuestionService {
     await this.topicService.insertNewQuestion(topicId, id, session);
     return newQuestion;
   }
-  async insertNewChoice(questionId: ObjectId, choiceId: ObjectId) {
-    return await this.questionRepository.insertNewChoice(questionId, choiceId);
+  async insertNewChoice(
+    questionId: ObjectId,
+    choiceId: ObjectId,
+    session: ClientSession,
+  ) {
+    return await this.questionRepository.insertNewChoice(
+      questionId,
+      choiceId,
+      session,
+    );
   }
   findAll() {
     return `This action returns all question`;

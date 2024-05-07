@@ -29,12 +29,20 @@ export class QuestionRepository {
     }
   }
 
-  async insertNewChoice(questionId: ObjectId, choiceId: ObjectId) {
+  async insertNewChoice(
+    questionId: ObjectId,
+    choiceId: ObjectId,
+    session: ClientSession,
+  ) {
     try {
       return await this.questionModel
-        .findByIdAndUpdate(questionId, {
-          $push: { choices: choiceId },
-        })
+        .findByIdAndUpdate(
+          questionId,
+          {
+            $push: { choices: choiceId },
+          },
+          { session },
+        )
         .exec();
     } catch (error) {
       console.log('ERROR_GETTING_QUESTION', error);
