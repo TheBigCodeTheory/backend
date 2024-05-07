@@ -22,7 +22,15 @@ export class TopicRepository {
       return await this.topicModel
         .find({})
         .lean()
-        .populate({ path: 'questions', model: 'Question' })
+        .populate({
+          path: 'questions',
+          model: 'Question',
+          populate: {
+            path: 'choices',
+            model: 'Choice',
+            select: '-correct',
+          },
+        })
         .exec();
     } catch (error) {
       console.log('ERROR_GETTING_TOPICS', error);

@@ -18,7 +18,7 @@ export class ChoiceController {
   constructor(private readonly choiceService: ChoiceService) {}
 
   @Version('1')
-  @Post()
+  @Post('/:questionId')
   create(
     @Param('questionId') questionId: ObjectId,
     @Body() createChoiceDto: CreateChoiceDto,
