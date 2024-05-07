@@ -7,12 +7,14 @@ import {
   Param,
   Delete,
   Version,
+  UseGuards,
 } from '@nestjs/common';
 import { ChoiceService } from './choice.service';
 import { CreateChoiceDto } from './dto/create-choice.dto';
 import { UpdateChoiceDto } from './dto/update-choice.dto';
 import { ObjectId } from 'mongoose';
 import { DbRepository } from '../db/db.repository';
+import { JwtAuthGuard } from '../auth/passport/jwt-auth.guard';
 
 @Controller('choice')
 export class ChoiceController {
@@ -22,6 +24,7 @@ export class ChoiceController {
   ) {}
 
   @Version('1')
+  @UseGuards(JwtAuthGuard)
   @Post('/:questionId')
   async create(
     @Param('questionId') questionId: ObjectId,

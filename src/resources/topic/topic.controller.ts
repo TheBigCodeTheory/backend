@@ -13,18 +13,20 @@ import { TopicService } from './topic.service';
 import { CreateTopicDto } from './dto/create-topic.dto';
 import { UpdateTopicDto } from './dto/update-topic.dto';
 import { ObjectId } from 'mongoose';
+import { JwtAuthGuard } from '../auth/passport/jwt-auth.guard';
 
 @Controller('topic')
 export class TopicController {
   constructor(private readonly topicService: TopicService) {}
 
   @Version('1')
-  // @UseGuards() // esto para mas adelante, para que chequee que el que lo hace sea "ADMIN"
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createTopicDto: CreateTopicDto) {
     return this.topicService.create(createTopicDto);
   }
   @Version('1')
+  @UseGuards(JwtAuthGuard)
   @Get()
   findAll() {
     return this.topicService.findAll();

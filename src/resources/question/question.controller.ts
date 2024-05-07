@@ -7,12 +7,14 @@ import {
   Param,
   Delete,
   Version,
+  UseGuards,
 } from '@nestjs/common';
 import { QuestionService } from './question.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { ObjectId } from 'mongoose';
 import { DbRepository } from '../db/db.repository';
+import { JwtAuthGuard } from '../auth/passport/jwt-auth.guard';
 
 @Controller('question')
 export class QuestionController {
@@ -21,6 +23,7 @@ export class QuestionController {
     private readonly dbRepository: DbRepository,
   ) {}
   @Version('1')
+  @UseGuards(JwtAuthGuard)
   @Post('/:topicId')
   async create(
     @Param('topicId') topicId: ObjectId,
