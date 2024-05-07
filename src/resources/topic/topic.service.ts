@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateTopicDto } from './dto/create-topic.dto';
 import { UpdateTopicDto } from './dto/update-topic.dto';
 import { TopicRepository } from './topic.repository';
-import { ObjectId } from 'mongoose';
+import { ClientSession, ObjectId } from 'mongoose';
 
 @Injectable()
 export class TopicService {
@@ -19,8 +19,16 @@ export class TopicService {
     return await this.topicRepository.findById(id);
   }
 
-  async insertNewQuestion(topic: ObjectId, question: ObjectId) {
-    return await this.topicRepository.insertNewQuestion(topic, question);
+  async insertNewQuestion(
+    topic: ObjectId,
+    question: ObjectId,
+    session: ClientSession,
+  ) {
+    return await this.topicRepository.insertNewQuestion(
+      topic,
+      question,
+      session,
+    );
   }
   findOne(id: number) {
     return `This action returns a #${id} topic`;
