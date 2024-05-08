@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IsEmail, IsString } from 'class-validator';
+import { IsEmail, IsEnum, IsString } from 'class-validator';
 import { Document, HydratedDocument, Types } from 'mongoose';
+import { ROLE } from 'src/lib/common/types';
 import { Auth } from 'src/resources/auth/entities/auth.entity';
 
 export type UserDocument = HydratedDocument<User>;
@@ -18,6 +19,10 @@ export class User extends Document {
   @IsEmail()
   @Prop({ unique: true, required: true })
   email: string;
+
+  @IsEnum(ROLE)
+  @Prop({ required: true, default: ROLE.USER })
+  roles: ROLE[];
 
   @Prop({ uique: true, type: Types.ObjectId, ref: 'Auth' })
   auth: Auth;

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
+import { JwtModule, JwtService } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './auth.controller';
@@ -10,6 +10,7 @@ import { jwtSecret } from './passport/constant';
 import { UserService } from '../user/user.service';
 import { UserModule } from '../user/user.module';
 import { MailerService } from '../mail/mailer.service';
+import { JwtStrategy } from './passport/jwt.strategy';
 
 @Module({
   imports: [
@@ -24,7 +25,13 @@ import { MailerService } from '../mail/mailer.service';
     UserModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, AuthRepository, UserService, MailerService],
+  providers: [
+    AuthService,
+    AuthRepository,
+    UserService,
+    MailerService,
+    JwtStrategy,
+  ],
   exports: [AuthService, AuthRepository, MongooseModule],
 })
 export class AuthModule {}
