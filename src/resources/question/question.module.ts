@@ -6,6 +6,7 @@ import { Question, QuestionSchema } from './entities/question.entity';
 import { QuestionRepository } from './question.repository';
 import { TopicService } from '../topic/topic.service';
 import { TopicModule } from '../topic/topic.module';
+import { DbModule } from '../db/db.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { TopicModule } from '../topic/topic.module';
       { name: Question.name, schema: QuestionSchema },
     ]),
     TopicModule,
+    DbModule,
   ],
   controllers: [QuestionController],
   providers: [

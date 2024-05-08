@@ -12,18 +12,34 @@ import { ChoiceService } from './choice.service';
 import { CreateChoiceDto } from './dto/create-choice.dto';
 import { UpdateChoiceDto } from './dto/update-choice.dto';
 import { ObjectId } from 'mongoose';
+import { DbRepository } from '../db/db.repository';
 
 @Controller('choice')
 export class ChoiceController {
-  constructor(private readonly choiceService: ChoiceService) {}
+  constructor(
+    private readonly choiceService: ChoiceService,
+    private readonly dbRepository: DbRepository,
+  ) {}
 
   @Version('1')
   @Post('/:questionId')
-  create(
+  async create(
     @Param('questionId') questionId: ObjectId,
     @Body() createChoiceDto: CreateChoiceDto,
   ) {
-    return this.choiceService.create(createChoiceDto, questionId);
+    const session = await this.dbRepository.getSessionWithTransaction();
+    try {
+      const response = await this.choiceService.create(
+        createChoiceDto,
+        questionId,
+        session,
+      );
+      await session.commitTransaction();
+      return response;
+    } catch (error) {
+      session.abortTransaction();
+      throw error;
+    }
   }
 
   @Get()

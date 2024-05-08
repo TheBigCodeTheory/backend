@@ -2,7 +2,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Topic } from './entities/topic.entity';
 import { CreateTopicDto } from './dto/create-topic.dto';
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { Model, ObjectId } from 'mongoose';
+import { ClientSession, Model, ObjectId } from 'mongoose';
 
 export class TopicRepository {
   constructor(@InjectModel(Topic.name) private topicModel: Model<Topic>) {}
@@ -46,12 +46,20 @@ export class TopicRepository {
     }
   }
 
-  async insertNewQuestion(topicId: ObjectId, questionId: ObjectId) {
+  async insertNewQuestion(
+    topicId: ObjectId,
+    questionId: ObjectId,
+    session: ClientSession,
+  ) {
     try {
       return await this.topicModel
-        .findByIdAndUpdate(topicId, {
-          $push: { questions: questionId },
-        })
+        .findByIdAndUpdate(
+          topicId,
+          {
+            $push: { questions: questionId },
+          },
+          { session },
+        )
         .exec();
     } catch (error) {
       console.log('ERROR_GETTING_TOPIC', error);

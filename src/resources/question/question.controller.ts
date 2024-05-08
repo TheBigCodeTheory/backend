@@ -12,17 +12,33 @@ import { QuestionService } from './question.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { ObjectId } from 'mongoose';
+import { DbRepository } from '../db/db.repository';
 
 @Controller('question')
 export class QuestionController {
-  constructor(private readonly questionService: QuestionService) {}
+  constructor(
+    private readonly questionService: QuestionService,
+    private readonly dbRepository: DbRepository,
+  ) {}
   @Version('1')
   @Post('/:topicId')
-  create(
+  async create(
     @Param('topicId') topicId: ObjectId,
     @Body() createQuestionDto: CreateQuestionDto,
   ) {
-    return this.questionService.create(createQuestionDto, topicId);
+    const session = await this.dbRepository.getSessionWithTransaction();
+    try {
+      const response = await this.questionService.create(
+        createQuestionDto,
+        topicId,
+        session,
+      );
+      await session.commitTransaction();
+      return response;
+    } catch (error) {
+      await session.abortTransaction();
+      throw error;
+    }
   }
   @Version('1')
   @Get()

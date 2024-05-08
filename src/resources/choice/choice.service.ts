@@ -3,7 +3,7 @@ import { CreateChoiceDto } from './dto/create-choice.dto';
 import { UpdateChoiceDto } from './dto/update-choice.dto';
 import { ChoiceRepository } from './choice.repository';
 import { QuestionService } from '../question/question.service';
-import { ObjectId } from 'mongoose';
+import { ClientSession, ObjectId } from 'mongoose';
 
 @Injectable()
 export class ChoiceService {
@@ -11,13 +11,18 @@ export class ChoiceService {
     private readonly choiceRepository: ChoiceRepository,
     private readonly questionService: QuestionService,
   ) {}
-  async create(createChoiceDto: CreateChoiceDto, questionId: ObjectId) {
+  async create(
+    createChoiceDto: CreateChoiceDto,
+    questionId: ObjectId,
+    session: ClientSession,
+  ) {
     const newChoice = await this.choiceRepository.create(
       createChoiceDto,
       questionId,
+      session,
     );
     const id = newChoice._id;
-    await this.questionService.insertNewChoice(questionId, id);
+    await this.questionService.insertNewChoice(questionId, id, session);
     return newChoice;
   }
 

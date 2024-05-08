@@ -3,7 +3,7 @@ import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
 import { QuestionRepository } from './question.repository';
 import { TopicService } from '../topic/topic.service';
-import { ObjectId } from 'mongoose';
+import { ClientSession, ObjectId } from 'mongoose';
 
 @Injectable()
 export class QuestionService {
@@ -12,18 +12,31 @@ export class QuestionService {
     private readonly topicService: TopicService,
   ) {}
   // todo add transaction.
-  async create(createQuestionDto: CreateQuestionDto, topicId: ObjectId) {
+  async create(
+    createQuestionDto: CreateQuestionDto,
+    topicId: ObjectId,
+    session: ClientSession,
+  ) {
     const newQuestion = await this.questionRepository.create(
       createQuestionDto,
       topicId,
+      session,
     );
 
     const id = newQuestion._id;
-    await this.topicService.insertNewQuestion(topicId, id);
+    await this.topicService.insertNewQuestion(topicId, id, session);
     return newQuestion;
   }
-  async insertNewChoice(questionId: ObjectId, choiceId: ObjectId) {
-    return await this.questionRepository.insertNewChoice(questionId, choiceId);
+  async insertNewChoice(
+    questionId: ObjectId,
+    choiceId: ObjectId,
+    session: ClientSession,
+  ) {
+    return await this.questionRepository.insertNewChoice(
+      questionId,
+      choiceId,
+      session,
+    );
   }
   findAll() {
     return `This action returns all question`;
