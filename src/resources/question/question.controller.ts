@@ -15,6 +15,9 @@ import { UpdateQuestionDto } from './dto/update-question.dto';
 import { ObjectId } from 'mongoose';
 import { DbRepository } from '../db/db.repository';
 import { JwtAuthGuard } from '../auth/passport/jwt-auth.guard';
+import { RolesGuard } from 'src/lib/security/roles.guard';
+import { Roles } from 'src/lib/security/roles.decorator';
+import { ROLE } from 'src/lib/common/types';
 
 @Controller('question')
 export class QuestionController {
@@ -23,7 +26,8 @@ export class QuestionController {
     private readonly dbRepository: DbRepository,
   ) {}
   @Version('1')
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles([ROLE.ADMIN])
   @Post('/:topicId')
   async create(
     @Param('topicId') topicId: ObjectId,

@@ -30,4 +30,12 @@ export class UserRepository {
       throw new HttpException('ERROR_FINDING_USER', HttpStatus.BAD_REQUEST);
     }
   }
+  async findById(userId: MongoObjectId): Promise<User> {
+    try {
+      return await this.userModel.findById(userId);
+    } catch (error) {
+      console.log('ERROR_FINDING_USER', error);
+      throw new HttpException('ERROR_FINDING_USER', HttpStatus.BAD_REQUEST);
+    }
+  }
 }

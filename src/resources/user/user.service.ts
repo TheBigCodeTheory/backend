@@ -16,6 +16,9 @@ export class UserService {
   async findAuth(auth: MongoObjectId) {
     return await this.userRepository.findAuth(auth);
   }
+  async findById(userId: MongoObjectId) {
+    return await this.userRepository.findById(userId);
+  }
 
   findAll() {
     return `This action returns all user`;
