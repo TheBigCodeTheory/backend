@@ -15,9 +15,9 @@ import { UpdateChoiceDto } from './dto/update-choice.dto';
 import { ObjectId } from 'mongoose';
 import { DbRepository } from '../db/db.repository';
 import { JwtAuthGuard } from '../auth/passport/jwt-auth.guard';
-import { ROLE } from 'src/lib/common/types';
-import { Roles } from 'src/lib/security/roles.decorator';
-import { RolesGuard } from 'src/lib/security/roles.guard';
+import { ROLE } from '../../lib/common/types';
+import { Roles } from '../../lib/security/roles.decorator';
+import { RolesGuard } from '../../lib/security/roles.guard';
 
 @Controller('choice')
 export class ChoiceController {
