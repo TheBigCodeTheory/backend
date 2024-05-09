@@ -1,0 +1,285 @@
+{
+	"info": {
+		"_postman_id": "20e45f78-db40-4daf-a089-56cbde602295",
+		"name": "TBCT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16822210"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "/topic",
+					"item": [
+						{
+							"name": "/",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"topic name postman\",\r\n    \"icon\": \"icon_name\",\r\n    \"color\":\"#00000\",\r\n    \"level\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/topic",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"topic"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/topic",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"topic"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/:id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/topic/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"topic",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "66351469fa5b9a8bfad2a7df"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/question",
+					"item": [
+						{
+							"name": "/:topicId",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"name\": {\r\n        \"eng\": \"basic list2 (pm)\",\r\n        \"spa\": \"lista basica2 (pm)\"\r\n    },\r\n    \"questionDescription\":{\r\n        \"eng\": \"What html tag is used for the ordered list.2 (pm)\",\r\n        \"spa\":\"Que etiqueta de html se utiliza para la lista ordenada.2 (pm)\"\r\n    },\r\n    \"type\": \"text\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/question/:topicId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"question",
+										":topicId"
+									],
+									"variable": [
+										{
+											"key": "topicId",
+											"value": "66351469fa5b9a8bfad2a7df"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/choice",
+					"item": [
+						{
+							"name": "/:questionId",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"description\": {\r\n        \"eng\": \"choice 1  (pm)\",\r\n        \"spa\": \"opcion 1 (pm)\"\r\n    },\r\n    \"correct\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/choice/:topicId",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"choice",
+										":topicId"
+									],
+									"variable": [
+										{
+											"key": "topicId",
+											"value": "66352099aed99b367f963d86"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/auth",
+					"item": [
+						{
+							"name": "/register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstname\": \"Eze\",\r\n  \"lastname\": \"Villa\",\r\n  \"email\": \"ezequiel.n.villa@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/auth/register",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"ezequiel.n.villa@gmail.com\",\r\n  \"code\": \"208679\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/auth/token",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/user",
+					"item": [
+						{
+							"name": "/admin/:id",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/question/:topicId",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"question",
+								":topicId"
+							],
+							"variable": [
+								{
+									"key": "topicId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
