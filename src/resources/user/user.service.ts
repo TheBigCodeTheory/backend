@@ -3,7 +3,8 @@ import { UserRepository } from './user.repository';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { MongoObjectId } from 'src/lib/common/types';
+import { MongoObjectId, ROLE } from 'src/lib/common/types';
+import { ObjectId } from 'mongoose';
 
 @Injectable()
 export class UserService {
@@ -19,7 +20,9 @@ export class UserService {
   async findById(userId: MongoObjectId) {
     return await this.userRepository.findById(userId);
   }
-
+  async makeAdmin(id: ObjectId) {
+    await this.userRepository.makeAdmin(id);
+  }
   findAll() {
     return `This action returns all user`;
   }

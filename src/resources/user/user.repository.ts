@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, ObjectId } from 'mongoose';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import { MongoObjectId } from 'src/lib/common/types';
+import { MongoObjectId, ROLE } from 'src/lib/common/types';
 
 export class UserRepository {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
@@ -36,6 +36,19 @@ export class UserRepository {
     } catch (error) {
       console.log('ERROR_FINDING_USER', error);
       throw new HttpException('ERROR_FINDING_USER', HttpStatus.BAD_REQUEST);
+    }
+  }
+  async makeAdmin(id: ObjectId) {
+    try {
+      await this.userModel.updateOne(
+        { id },
+        {
+          $push: { roles: [ROLE.ADMIN] },
+        },
+      );
+    } catch (error) {
+      console.log('ERROR_MAKING_ADMIN', error);
+      throw new HttpException('ERROR_MAKING_ADMIN', HttpStatus.BAD_REQUEST);
     }
   }
 }
