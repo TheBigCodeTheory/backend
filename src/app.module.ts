@@ -15,7 +15,6 @@ import { UserModule } from './resources/user/user.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    MongooseModule.forRoot(process.env.MONGODB_CONNECTION),
     DbModule,
     ChoiceModule,
     QuestionModule,

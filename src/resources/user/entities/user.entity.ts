@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { IsEmail, IsEnum, IsString } from 'class-validator';
 import { Document, HydratedDocument, Types } from 'mongoose';
-import { ROLE } from 'src/lib/common/types';
-import { Auth } from 'src/resources/auth/entities/auth.entity';
+import { ROLE } from '../../../lib/common/types';
+import { Auth } from '../../../resources/auth/entities/auth.entity';
 
 export type UserDocument = HydratedDocument<User>;
 
