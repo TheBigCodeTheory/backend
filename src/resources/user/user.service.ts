@@ -3,7 +3,7 @@ import { UserRepository } from './user.repository';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { MongoObjectId, ROLE } from 'src/lib/common/types';
+import { MongoObjectId } from '../../lib/common/types';
 import { ClientSession, ObjectId } from 'mongoose';
 
 @Injectable()

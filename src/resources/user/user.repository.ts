@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { ClientSession, Model, ObjectId } from 'mongoose';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import { MongoObjectId, ROLE } from 'src/lib/common/types';
+import { MongoObjectId, ROLE } from '../../lib/common/types';
 
 export class UserRepository {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
