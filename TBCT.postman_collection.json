@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "20e45f78-db40-4daf-a089-56cbde602295",
+		"_postman_id": "80578b4b-04dc-41ab-bbaa-08bd330bacbc",
 		"name": "TBCT",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "16822210"
+		"_exporter_id": "16167969"
 	},
 	"item": [
 		{
@@ -187,7 +187,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"firstname\": \"Eze\",\r\n  \"lastname\": \"Villa\",\r\n  \"email\": \"ezequiel.n.villa@gmail.com\"\r\n}",
+									"raw": "{\r\n  \"firstname\": \"Sofia\",\r\n  \"lastname\": \"Vigna\",\r\n  \"email\": \"sofiavign@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -195,15 +195,40 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/v1/auth/register",
+									"raw": "{{host}}/auth/register",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
-										"api",
-										"v1",
 										"auth",
 										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/code",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"sofiavign@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/auth/code",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"auth",
+										"code"
 									]
 								}
 							},
@@ -216,7 +241,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"email\": \"ezequiel.n.villa@gmail.com\",\r\n  \"code\": \"208679\"\r\n}",
+									"raw": "{\r\n  \"email\": \"sofiavign@gmail.com\",\r\n  \"code\": \"908381\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -224,15 +249,41 @@
 									}
 								},
 								"url": {
-									"raw": "{{host}}/api/v1/auth/token",
+									"raw": "{{host}}/auth/token",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
-										"api",
-										"v1",
 										"auth",
 										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/auth/user",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"auth",
+										"user"
 									]
 								}
 							},
@@ -247,7 +298,38 @@
 							"name": "/admin/:id",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/me",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/user/me",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"user",
+										"me"
+									]
+								}
 							},
 							"response": []
 						}
