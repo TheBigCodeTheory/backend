@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { ClientSession, Model } from 'mongoose';
 import { Auth } from './entities/auth.entity';
 import { GetTokenDto } from './dto/get-token';
+import { MongoObjectId } from 'src/lib/common/types';
 
 export class AuthRepository {
   constructor(@InjectModel(Auth.name) private authModel: Model<Auth>) {}
@@ -62,7 +63,7 @@ export class AuthRepository {
     }
   }
 
-  async delete(authId: string, session?: ClientSession): Promise<Auth> {
+  async delete(authId: Auth, session?: ClientSession): Promise<Auth> {
     try {
       return await this.authModel.findByIdAndDelete(authId, {
         session,

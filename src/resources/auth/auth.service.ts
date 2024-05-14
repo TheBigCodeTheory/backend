@@ -59,6 +59,6 @@ export class AuthService {
     session: ClientSession,
   ): Promise<Auth> {
     const user = await this.userService.delete(userId, session);
-    return await this.authRepository.delete(String(user.auth), session);
+    return await this.authRepository.delete(user.auth, session);
   }
 }
