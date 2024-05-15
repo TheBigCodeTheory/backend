@@ -7,6 +7,9 @@ import { GenerateCodeDto } from './dto/send-email.dto';
 import { User } from '../user/entities/user.entity';
 import { GetTokenDto } from './dto/get-token';
 import { MailerService } from '../mail/mailer.service';
+import { Auth } from './entities/auth.entity';
+import { ClientSession } from 'mongoose';
+import { MongoObjectId } from 'src/lib/common/types';
 
 @Injectable()
 export class AuthService {
@@ -49,5 +52,13 @@ export class AuthService {
     return String(
       Math.ceil(Math.random() * 9) * 100000 + Math.ceil(Math.random() * 9999),
     );
+  }
+
+  async deleteAuthUser(
+    userId: MongoObjectId,
+    session: ClientSession,
+  ): Promise<Auth> {
+    const user = await this.userService.delete(userId, session);
+    return await this.authRepository.delete(user.auth, session);
   }
 }

@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, ObjectId } from 'mongoose';
+import { ClientSession, Model, ObjectId } from 'mongoose';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { MongoObjectId, ROLE } from '../../lib/common/types';
@@ -30,6 +30,7 @@ export class UserRepository {
       throw new HttpException('ERROR_FINDING_USER', HttpStatus.BAD_REQUEST);
     }
   }
+
   async findById(userId: MongoObjectId): Promise<User> {
     try {
       return await this.userModel.findById(userId);
@@ -38,6 +39,16 @@ export class UserRepository {
       throw new HttpException('ERROR_FINDING_USER', HttpStatus.BAD_REQUEST);
     }
   }
+
+  async delete(userId: MongoObjectId, session?: ClientSession): Promise<User> {
+    try {
+      return await this.userModel.findByIdAndDelete(userId, { session });
+    } catch (error) {
+      console.log('ERROR_DELETING_USER', error);
+      throw new HttpException('ERROR_DELETING_USER', HttpStatus.BAD_REQUEST);
+    }
+  }
+
   async makeAdmin(id: ObjectId) {
     try {
       await this.userModel.updateOne(

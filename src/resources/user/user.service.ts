@@ -3,8 +3,8 @@ import { UserRepository } from './user.repository';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { MongoObjectId, ROLE } from '../../lib/common/types';
-import { ObjectId } from 'mongoose';
+import { MongoObjectId } from '../../lib/common/types';
+import { ClientSession, ObjectId } from 'mongoose';
 
 @Injectable()
 export class UserService {
@@ -35,7 +35,7 @@ export class UserService {
     return `This action updates a #${id} user`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async delete(userId: MongoObjectId, session?: ClientSession) {
+    return await this.userRepository.delete(userId, session);
   }
 }

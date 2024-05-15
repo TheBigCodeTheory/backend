@@ -11,6 +11,7 @@ import { UserService } from '../user/user.service';
 import { UserModule } from '../user/user.module';
 import { MailerService } from '../mail/mailer.service';
 import { JwtStrategy } from './passport/jwt.strategy';
+import { DbModule } from '../db/db.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { JwtStrategy } from './passport/jwt.strategy';
       }),
     }),
     UserModule,
+    DbModule,
   ],
   controllers: [AuthController],
   providers: [
