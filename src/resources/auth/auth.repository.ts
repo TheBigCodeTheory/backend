@@ -1,8 +1,9 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { ClientSession, Model } from 'mongoose';
 import { Auth } from './entities/auth.entity';
 import { GetTokenDto } from './dto/get-token';
+import { MongoObjectId } from 'src/lib/common/types';
 
 export class AuthRepository {
   constructor(@InjectModel(Auth.name) private authModel: Model<Auth>) {}
@@ -59,6 +60,17 @@ export class AuthRepository {
       }
       console.log('ERROR_AUTH_LOGIN', error);
       throw new HttpException('ERROR_AUTH_LOGIN', HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  async delete(authId: Auth, session?: ClientSession): Promise<Auth> {
+    try {
+      return await this.authModel.findByIdAndDelete(authId, {
+        session,
+      });
+    } catch (error) {
+      console.log('ERROR_DELETING_AUTH', error);
+      throw new HttpException('ERROR_DELETING_AUTH', HttpStatus.BAD_REQUEST);
     }
   }
 }

@@ -30,8 +30,8 @@ export class QuestionController {
   @Roles([ROLE.ADMIN])
   @Post('/:topicId')
   async create(
-    @Param('topicId') topicId: ObjectId,
     @Body() createQuestionDto: CreateQuestionDto,
+    @Param('topicId') topicId: ObjectId,
   ) {
     const session = await this.dbRepository.getSessionWithTransaction();
     try {
