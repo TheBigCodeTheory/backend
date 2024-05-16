@@ -31,6 +31,23 @@ export class UserRepository {
     }
   }
 
+  async addUserTopic(
+    userId: MongoObjectId,
+    topicsQuestionHistoryId: MongoObjectId,
+  ): Promise<User> {
+    try {
+      return await this.userModel.findByIdAndUpdate(userId, {
+        $push: { topicsQuestionsHistory: topicsQuestionHistoryId },
+      });
+    } catch (error) {
+      console.log('ERROR_ADDING_USER_TOPIC', error);
+      throw new HttpException(
+        'ERROR_ADDING_USER_TOPIC',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
   async findById(userId: MongoObjectId): Promise<User> {
     try {
       return await this.userModel.findById(userId);

@@ -17,12 +17,25 @@ export class UserService {
   async findAuth(auth: MongoObjectId) {
     return await this.userRepository.findAuth(auth);
   }
+
   async findById(userId: MongoObjectId) {
     return await this.userRepository.findById(userId);
   }
+
   async makeAdmin(id: ObjectId) {
     await this.userRepository.makeAdmin(id);
   }
+
+  async addUserTopic(
+    userId: MongoObjectId,
+    topicsQuestionHistoryId: MongoObjectId,
+  ) {
+    return await this.userRepository.addUserTopic(
+      userId,
+      topicsQuestionHistoryId,
+    );
+  }
+
   findAll() {
     return `This action returns all user`;
   }

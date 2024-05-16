@@ -1,26 +1,25 @@
 import { Injectable } from '@nestjs/common';
+import { TopicsQuestionsHistoryRepository } from './topics-questions-history.repository';
 import { CreateTopicsQuestionsHistoryDto } from './dto/create-topics-questions-history.dto';
-import { UpdateTopicsQuestionsHistoryDto } from './dto/update-topics-questions-history.dto';
+import { TopicsQuestionsHistory } from './entities/topics-questions-history.entity';
+import { UserService } from '../user/user.service';
+import { MongoObjectId } from 'src/lib/common/types';
 
 @Injectable()
 export class TopicsQuestionsHistoryService {
-  create(createTopicsQuestionsHistoryDto: CreateTopicsQuestionsHistoryDto) {
-    return 'This action adds a new topicsQuestionsHistory';
-  }
+  constructor(
+    private readonly topicsQuestionsHistoryRepository: TopicsQuestionsHistoryRepository,
+    private readonly userService: UserService,
+  ) {}
 
-  findAll() {
-    return `This action returns all topicsQuestionsHistory`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} topicsQuestionsHistory`;
-  }
-
-  update(id: number, updateTopicsQuestionsHistoryDto: UpdateTopicsQuestionsHistoryDto) {
-    return `This action updates a #${id} topicsQuestionsHistory`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} topicsQuestionsHistory`;
+  async create(
+    userId: MongoObjectId,
+    createTopicsQuestionsHistoryDto: CreateTopicsQuestionsHistoryDto,
+  ): Promise<TopicsQuestionsHistory> {
+    const userTopic = await this.topicsQuestionsHistoryRepository.create(
+      createTopicsQuestionsHistoryDto,
+    );
+    await this.userService.addUserTopic(userId, userTopic._id);
+    return userTopic;
   }
 }
