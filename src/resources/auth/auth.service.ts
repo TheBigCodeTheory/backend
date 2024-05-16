@@ -22,11 +22,22 @@ export class AuthService {
     private readonly topicsQuestionHistoryService: TopicsQuestionsHistoryService,
   ) {}
 
-  async register(createUserDto: CreateUserDto): Promise<User> {
+  async register(
+    createUserDto: CreateUserDto,
+    session: ClientSession,
+  ): Promise<User> {
     const code = this.generateCode();
-    const auth = await this.authRepository.create(createUserDto.email, code);
-    const user = await this.userService.create(auth!._id, createUserDto);
-    await this.topicsQuestionHistoryService.create(user._id, {});
+    const auth = await this.authRepository.create(
+      createUserDto.email,
+      code,
+      session,
+    );
+    const user = await this.userService.create(
+      auth!._id,
+      createUserDto,
+      session,
+    );
+    await this.topicsQuestionHistoryService.create(user._id, {}, session);
     await this.mailerService.sendVerificationCode(createUserDto!.email, code);
     return user;
   }

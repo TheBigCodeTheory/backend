@@ -8,9 +8,16 @@ import { MongoObjectId, ROLE } from '../../lib/common/types';
 export class UserRepository {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async create(authId: string, createUserDto: CreateUserDto): Promise<User> {
+  async create(
+    authId: string,
+    createUserDto: CreateUserDto,
+    session?: ClientSession,
+  ): Promise<User> {
     try {
-      const user = new this.userModel({ auth: authId, ...createUserDto });
+      const user = new this.userModel(
+        { auth: authId, ...createUserDto },
+        { session },
+      );
       return await user.save();
     } catch (error) {
       if (error.code === 11000) {
@@ -34,11 +41,16 @@ export class UserRepository {
   async addUserTopic(
     userId: MongoObjectId,
     topicsQuestionHistoryId: MongoObjectId,
+    session: ClientSession,
   ): Promise<User> {
     try {
-      return await this.userModel.findByIdAndUpdate(userId, {
-        $push: { topicsQuestionsHistory: topicsQuestionHistoryId },
-      });
+      return await this.userModel.findByIdAndUpdate(
+        userId,
+        {
+          $push: { topicsQuestionsHistory: topicsQuestionHistoryId },
+        },
+        { session },
+      );
     } catch (error) {
       console.log('ERROR_ADDING_USER_TOPIC', error);
       throw new HttpException(

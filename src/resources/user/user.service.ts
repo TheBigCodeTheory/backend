@@ -10,8 +10,12 @@ import { ClientSession, ObjectId } from 'mongoose';
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async create(authId: string, createUserDto: CreateUserDto): Promise<User> {
-    return await this.userRepository.create(authId, createUserDto);
+  async create(
+    authId: string,
+    createUserDto: CreateUserDto,
+    session: ClientSession,
+  ): Promise<User> {
+    return await this.userRepository.create(authId, createUserDto, session);
   }
 
   async findAuth(auth: MongoObjectId) {
@@ -29,10 +33,12 @@ export class UserService {
   async addUserTopic(
     userId: MongoObjectId,
     topicsQuestionHistoryId: MongoObjectId,
+    session?: ClientSession,
   ) {
     return await this.userRepository.addUserTopic(
       userId,
       topicsQuestionHistoryId,
+      session,
     );
   }
 

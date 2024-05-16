@@ -8,12 +8,19 @@ import { MongoObjectId } from 'src/lib/common/types';
 export class AuthRepository {
   constructor(@InjectModel(Auth.name) private authModel: Model<Auth>) {}
 
-  async create(email: string, code: string): Promise<Auth> {
+  async create(
+    email: string,
+    code: string,
+    session: ClientSession,
+  ): Promise<Auth> {
     try {
-      const newAuth = new this.authModel({
-        email,
-        code,
-      });
+      const newAuth = new this.authModel(
+        {
+          email,
+          code,
+        },
+        { session },
+      );
       return await newAuth.save();
     } catch (error) {
       if (error.code === 11000) {

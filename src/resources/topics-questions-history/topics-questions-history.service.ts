@@ -4,6 +4,7 @@ import { CreateTopicsQuestionsHistoryDto } from './dto/create-topics-questions-h
 import { TopicsQuestionsHistory } from './entities/topics-questions-history.entity';
 import { UserService } from '../user/user.service';
 import { MongoObjectId } from 'src/lib/common/types';
+import { ClientSession } from 'mongoose';
 
 @Injectable()
 export class TopicsQuestionsHistoryService {
@@ -15,11 +16,13 @@ export class TopicsQuestionsHistoryService {
   async create(
     userId: MongoObjectId,
     createTopicsQuestionsHistoryDto: CreateTopicsQuestionsHistoryDto,
+    session: ClientSession,
   ): Promise<TopicsQuestionsHistory> {
     const userTopic = await this.topicsQuestionsHistoryRepository.create(
       createTopicsQuestionsHistoryDto,
+      session,
     );
-    await this.userService.addUserTopic(userId, userTopic._id);
+    await this.userService.addUserTopic(userId, userTopic._id, session);
     return userTopic;
   }
 }
