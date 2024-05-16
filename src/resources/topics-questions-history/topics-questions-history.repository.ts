@@ -17,9 +17,8 @@ export class TopicsQuestionsHistoryRepository {
     try {
       const userTopics = new this.topicsQuestionsHistoryModel(
         createTopicsQuestionsHistoryDto,
-        { session },
       );
-      return await userTopics.save();
+      return await userTopics.save({ session });
     } catch (error) {
       console.log('ERROR_CREATING_USER_TOPIC', error);
       throw new HttpException(

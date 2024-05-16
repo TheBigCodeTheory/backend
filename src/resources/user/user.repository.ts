@@ -14,11 +14,8 @@ export class UserRepository {
     session?: ClientSession,
   ): Promise<User> {
     try {
-      const user = new this.userModel(
-        { auth: authId, ...createUserDto },
-        { session },
-      );
-      return await user.save();
+      const user = new this.userModel({ auth: authId, ...createUserDto });
+      return await user.save({ session });
     } catch (error) {
       if (error.code === 11000) {
         console.log('EMAIL_ALREADY_EXISTS', error);

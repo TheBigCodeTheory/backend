@@ -14,14 +14,11 @@ export class AuthRepository {
     session: ClientSession,
   ): Promise<Auth> {
     try {
-      const newAuth = new this.authModel(
-        {
-          email,
-          code,
-        },
-        { session },
-      );
-      return await newAuth.save();
+      const newAuth = new this.authModel({
+        email,
+        code,
+      });
+      return await newAuth.save({ session });
     } catch (error) {
       if (error.code === 11000) {
         console.log('EMAIL_ALREADY_EXISTS', error);
