@@ -8,10 +8,14 @@ import { MongoObjectId, ROLE } from '../../lib/common/types';
 export class UserRepository {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-  async create(authId: string, createUserDto: CreateUserDto): Promise<User> {
+  async create(
+    authId: string,
+    createUserDto: CreateUserDto,
+    session?: ClientSession,
+  ): Promise<User> {
     try {
       const user = new this.userModel({ auth: authId, ...createUserDto });
-      return await user.save();
+      return await user.save({ session });
     } catch (error) {
       if (error.code === 11000) {
         console.log('EMAIL_ALREADY_EXISTS', error);
@@ -28,6 +32,28 @@ export class UserRepository {
     } catch (error) {
       console.log('ERROR_FINDING_USER', error);
       throw new HttpException('ERROR_FINDING_USER', HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  async addUserTopic(
+    userId: MongoObjectId,
+    topicsQuestionHistoryId: MongoObjectId,
+    session: ClientSession,
+  ): Promise<User> {
+    try {
+      return await this.userModel.findByIdAndUpdate(
+        userId,
+        {
+          $push: { topicsQuestionsHistory: topicsQuestionHistoryId },
+        },
+        { session },
+      );
+    } catch (error) {
+      console.log('ERROR_ADDING_USER_TOPIC', error);
+      throw new HttpException(
+        'ERROR_ADDING_USER_TOPIC',
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 

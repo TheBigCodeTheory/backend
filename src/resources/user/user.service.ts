@@ -10,19 +10,38 @@ import { ClientSession, ObjectId } from 'mongoose';
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
-  async create(authId: string, createUserDto: CreateUserDto): Promise<User> {
-    return await this.userRepository.create(authId, createUserDto);
+  async create(
+    authId: string,
+    createUserDto: CreateUserDto,
+    session: ClientSession,
+  ): Promise<User> {
+    return await this.userRepository.create(authId, createUserDto, session);
   }
 
   async findAuth(auth: MongoObjectId) {
     return await this.userRepository.findAuth(auth);
   }
+
   async findById(userId: MongoObjectId) {
     return await this.userRepository.findById(userId);
   }
+
   async makeAdmin(id: ObjectId) {
     await this.userRepository.makeAdmin(id);
   }
+
+  async addUserTopic(
+    userId: MongoObjectId,
+    topicsQuestionHistoryId: MongoObjectId,
+    session?: ClientSession,
+  ) {
+    return await this.userRepository.addUserTopic(
+      userId,
+      topicsQuestionHistoryId,
+      session,
+    );
+  }
+
   findAll() {
     return `This action returns all user`;
   }

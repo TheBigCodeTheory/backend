@@ -3,6 +3,7 @@ import { IsEmail, IsEnum, IsString } from 'class-validator';
 import { Document, HydratedDocument, Types } from 'mongoose';
 import { ROLE } from '../../../lib/common/types';
 import { Auth } from '../../../resources/auth/entities/auth.entity';
+import { TopicsQuestionsHistory } from 'src/resources/topics-questions-history/entities/topics-questions-history.entity';
 
 export type UserDocument = HydratedDocument<User>;
 
@@ -24,8 +25,11 @@ export class User extends Document {
   @Prop({ required: true, default: ROLE.USER })
   roles: ROLE[];
 
-  @Prop({ uique: true, type: Types.ObjectId, ref: 'Auth' })
+  @Prop({ unique: true, type: Types.ObjectId, ref: 'Auth' })
   auth: Auth;
+
+  @Prop({ type: Types.ObjectId, ref: 'TopicsQuestionsHistory' })
+  topicsQuestionsHistory: TopicsQuestionsHistory[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
