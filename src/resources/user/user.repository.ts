@@ -51,13 +51,27 @@ export class UserRepository {
 
   async makeAdmin(id: ObjectId) {
     try {
-      await this.userModel.updateOne(
-        { id },
+      const updated = await this.userModel.updateOne(
+        { _id: id, roles: { $ne: ROLE.ADMIN } },
         {
-          $push: { roles: [ROLE.ADMIN] },
+          $addToSet: { roles: ROLE.ADMIN },
         },
       );
+
+      if (updated.matchedCount == 0) {
+        console.log(
+          'ERROR_ALREADY_ADMIN_OR_BAD_ID',
+          'MATCHED_COUNT_EQUAL_ZERO',
+        );
+        throw new HttpException(
+          'ERROR_ALREADY_ADMIN_OR_BAD_ID',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
     } catch (error) {
+      if (error.message) {
+        throw error;
+      }
       console.log('ERROR_MAKING_ADMIN', error);
       throw new HttpException('ERROR_MAKING_ADMIN', HttpStatus.BAD_REQUEST);
     }

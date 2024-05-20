@@ -12,9 +12,6 @@ import { CreateUserDto } from '../user/dto/create-user.dto';
 import { GenerateCodeDto } from './dto/send-email.dto';
 import { GetTokenDto } from './dto/get-token';
 import { JwtAuthGuard } from './passport/jwt-auth.guard';
-import { RolesGuard } from 'src/lib/security/roles.guard';
-import { Roles } from 'src/lib/security/roles.decorator';
-import { ROLE } from 'src/lib/common/types';
 import { DbRepository } from '../db/db.repository';
 
 @Controller('auth')
@@ -43,8 +40,7 @@ export class AuthController {
   }
 
   @Version('1')
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles([ROLE.USER])
+  @UseGuards(JwtAuthGuard)
   @Delete('/user')
   async deleteUser(@Request() req) {
     const session = await this.dbRepository.getSessionWithTransaction();
