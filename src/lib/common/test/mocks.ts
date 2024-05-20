@@ -62,6 +62,13 @@ export class MockTest {
         { _id: new ObjectId(this.userId) },
         { $push: { roles: ROLE.ADMIN } },
       );
+      const responseLogin = await request(this.httpServer)
+        .post('/auth/token')
+        .send({
+          email,
+          code,
+        });
+      this.token = responseLogin.body.token;
     }
     return {
       authId: this.authId,
