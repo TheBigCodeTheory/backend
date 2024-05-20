@@ -1,11 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsObject } from 'class-validator';
-import { ObjectId } from 'mongoose';
+import { IsObject, IsString } from 'class-validator';
 
 export class CreateQuestionDto {
   @ApiProperty({
     type: Object,
     example: `eng: basic list, spa: lista basica`,
+    required: true,
   })
   @IsObject()
   name: {
@@ -15,7 +15,8 @@ export class CreateQuestionDto {
 
   @ApiProperty({
     type: Object,
-    example: `eng: What html tag is used for the ordered list , spa: Que etiqueta de html se utiliza para la lista ordenada `,
+    example: `{eng: What html tag is used for the ordered list , spa: Que etiqueta de html se utiliza para la lista ordenada }`,
+    required: true,
   })
   @IsObject({})
   questionDescription: {
@@ -26,6 +27,8 @@ export class CreateQuestionDto {
   @ApiProperty({
     type: String,
     example: 'text',
+    required: true,
   })
+  @IsString({})
   type: string;
 }

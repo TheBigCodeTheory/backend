@@ -1,25 +1,271 @@
 {
 	"info": {
-		"_postman_id": "80578b4b-04dc-41ab-bbaa-08bd330bacbc",
+		"_postman_id": "20e45f78-db40-4daf-a089-56cbde602295",
 		"name": "TBCT",
+		"description": "TBCT API DOCUMENTATION",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "16167969"
+		"_exporter_id": "16822210"
 	},
 	"item": [
 		{
 			"name": "v1",
 			"item": [
 				{
-					"name": "/topic",
+					"name": "/auth",
 					"item": [
 						{
-							"name": "/",
+							"name": "/register",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"topic name postman\",\r\n    \"icon\": \"icon_name\",\r\n    \"color\":\"#00000\",\r\n    \"level\": 1\r\n}",
+									"raw": "{\r\n  \"firstname\": \"Eze\",\r\n  \"lastname\": \"Villa\",\r\n  \"email\": \"ok_test@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/auth/register",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"register"
+									]
+								},
+								"description": "Tengo una descripcion!"
+							},
+							"response": [
+								{
+									"name": "/register new_email",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"firstname\": \"Eze\",\r\n  \"lastname\": \"Villa\",\r\n  \"email\": \"ok_test@gmail.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3080/api/v1/auth/register",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3080",
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"register"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "309"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"135-Q5ILFfvuin9qXSYPWWs7fLBti8o\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 13 May 2024 13:11:04 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"path\": \"/api/v1/auth/register\",\n    \"statusCode\": 201,\n    \"result\": {\n        \"firstname\": \"Eze\",\n        \"lastname\": \"Villa\",\n        \"email\": \"ok_test@gmail.com\",\n        \"roles\": [\n            \"USER\"\n        ],\n        \"auth\": \"6642116753ce4c53591bb196\",\n        \"_id\": \"6642116753ce4c53591bb198\",\n        \"createdAt\": \"2024-05-13T13:11:03.410Z\",\n        \"updatedAt\": \"2024-05-13T13:11:03.410Z\",\n        \"__v\": 0\n    }\n}"
+								},
+								{
+									"name": "/register repeated_email",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"firstname\": \"Eze\",\r\n  \"lastname\": \"Villa\",\r\n  \"email\": \"ezequiel.n.villa@gmail.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3080/api/v1/auth/register",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3080",
+											"path": [
+												"api",
+												"v1",
+												"auth",
+												"register"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "97"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"61-8Lely/CIH2K6NUZm+rMbmbpmPmo\""
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 13 May 2024 13:10:37 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": false,\n    \"statusCode\": 400,\n    \"path\": \"/api/v1/auth/register\",\n    \"message\": \"EMAIL_ALREADY_EXISTS\"\n}"
+								}
+							]
+						},
+						{
+							"name": "/token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"ezequiel.n.villa@gmail.com\",\r\n  \"code\": \"708232\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/auth/token",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/user",
+					"item": [
+						{
+							"name": "/admin/:id",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/user/admin/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"admin",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "663a14f26b4f03fbb2719a10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/topic",
+					"item": [
+						{
+							"name": "/",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"topic name example\",\r\n    \"icon\": \"icon_name\",\r\n    \"color\":\"#00000\",\r\n    \"level\": 1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -36,9 +282,343 @@
 										"v1",
 										"topic"
 									]
-								}
+								},
+								"description": "REQUIRE: ADMIN ROLE\n\nCreacion base de un topico, donde todos los campos son requeridos.  \nEn la db se considera que el \"name\" sea unico. Por ejemplo no podria haber dos \"html\" como name."
 							},
-							"response": []
+							"response": [
+								{
+									"name": "/  OK example",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"topic name example\",\r\n    \"icon\": \"icon_name\",\r\n    \"color\":\"#00000\",\r\n    \"level\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3080/api/v1/topic",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3080",
+											"path": [
+												"api",
+												"v1",
+												"topic"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "274"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"112-MsqdD9dV1PmC18ZpgGnerXLm7Fs\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 15:01:00 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"path\": \"/api/v1/topic\",\n    \"statusCode\": 201,\n    \"result\": {\n        \"name\": \"topic name example\",\n        \"icon\": \"icon_name\",\n        \"level\": 1,\n        \"color\": \"#00000\",\n        \"questions\": [],\n        \"_id\": \"6644ce2ce2ec1211d1fb0637\",\n        \"createdAt\": \"2024-05-15T15:01:00.728Z\",\n        \"updatedAt\": \"2024-05-15T15:01:00.728Z\",\n        \"__v\": 0\n    }\n}"
+								},
+								{
+									"name": "/ Missing field color",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"topic name example\",\r\n    \"icon\": \"icon_name\",\r\n    \r\n    \"level\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/topic",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"topic"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "90"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"5a-/f+Yp0dh2Dfn4m8zqEJnT7ZL/bk\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 15:15:09 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": false,\n    \"statusCode\": 400,\n    \"path\": \"/api/v1/topic\",\n    \"message\": \"Bad Request Exception\"\n}"
+								},
+								{
+									"name": "/ Wrong type in color",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"topic name example\",\r\n    \"icon\": \"icon_name\",\r\n    \"color\":2,\r\n    \"level\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/topic",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"topic"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "90"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"5a-/f+Yp0dh2Dfn4m8zqEJnT7ZL/bk\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 15:15:33 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": false,\n    \"statusCode\": 400,\n    \"path\": \"/api/v1/topic\",\n    \"message\": \"Bad Request Exception\"\n}"
+								},
+								{
+									"name": "NO TOKEN",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"topic name example\",\r\n    \"icon\": \"icon_name\",\r\n    \"color\":\"#00000\",\r\n    \"level\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/topic",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"topic"
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "43"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2b-dGnJzt6gv1nJjX6DJ9RztDWptng\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 21:20:11 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+								},
+								{
+									"name": "/ user with user Role (ADMIN required)",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"topic name example\",\r\n    \"icon\": \"icon_name\",\r\n    \"color\":\"#00000\",\r\n    \"level\": 1\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/topic",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"topic"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "69"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"45-MZJWZc+Y+RUbHpnhz2B2Vipii24\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 21:22:45 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Forbidden resource\",\n    \"error\": \"Forbidden\",\n    \"statusCode\": 403\n}"
+								}
+							]
 						},
 						{
 							"name": "/",
@@ -65,9 +645,70 @@
 										"v1",
 										"topic"
 									]
-								}
+								},
+								"description": "REQUIRE: ADMIN O USER ROLE  \nEste endpoint quedo por ahora de muestra. Su finalidad es obtener todos los topicos y sus relaciones o \"sub-clases\", en este caso, tener todos los Question y por cada Question tambien cada Choice."
 							},
-							"response": []
+							"response": [
+								{
+									"name": "/ Ok",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3080/api/v1/topic",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3080",
+											"path": [
+												"api",
+												"v1",
+												"topic"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "912"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"390-sAdUVopn90l0nUuhYgFFOCrJyYo\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 15:00:29 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"path\": \"/api/v1/topic\",\n    \"statusCode\": 200,\n    \"result\": [\n        {\n            \"_id\": \"66351469fa5b9a8bfad2a7df\",\n            \"name\": \"topic name postman\",\n            \"icon\": \"icon_name\",\n            \"level\": 1,\n            \"color\": \"#00000\",\n            \"questions\": [\n                {\n                    \"_id\": \"66352099aed99b367f963d86\",\n                    \"name\": {\n                        \"eng\": \"basic list (pm)\",\n                        \"spa\": \"lista basica (pm)\",\n                        \"_id\": \"66352099aed99b367f963d87\"\n                    },\n                    \"questionDescription\": {\n                        \"eng\": \"What html tag is used for the ordered list. (pm)\",\n                        \"spa\": \"Que etiqueta de html se utiliza para la lista ordenada. (pm)\",\n                        \"_id\": \"66352099aed99b367f963d88\"\n                    },\n                    \"type\": \"text\",\n                    \"choices\": [\n                        {\n                            \"_id\": \"663a411f32b8397c0eaa65d7\",\n                            \"description\": {\n                                \"eng\": \"choice 1  (pm)\",\n                                \"spa\": \"opcion 1 (pm)\",\n                                \"_id\": \"663a411f32b8397c0eaa65d8\"\n                            },\n                            \"createdAt\": \"2024-05-07T14:56:31.381Z\",\n                            \"updatedAt\": \"2024-05-07T14:56:31.381Z\",\n                            \"__v\": 0\n                        }\n                    ],\n                    \"createdAt\": \"2024-05-03T17:36:25.226Z\",\n                    \"updatedAt\": \"2024-05-07T14:56:31.443Z\",\n                    \"__v\": 0\n                }\n            ],\n            \"createdAt\": \"2024-05-03T16:44:25.922Z\",\n            \"updatedAt\": \"2024-05-03T17:36:25.308Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+								}
+							]
 						},
 						{
 							"name": "/:id",
@@ -88,12 +729,144 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "66351469fa5b9a8bfad2a7df"
+											"value": "66351469fa5b9a8bfad2a7d"
 										}
 									]
-								}
+								},
+								"description": "SIN ROLE\n\nSe obtiene el topico especifico por ID. De dicho topico se consiguen los datos mas basicos, sin profundizar en sus relaciones/sub-clases."
 							},
-							"response": []
+							"response": [
+								{
+									"name": "/:id Ok ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:3080/api/v1/topic/:id",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3080",
+											"path": [
+												"api",
+												"v1",
+												"topic",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "66351469fa5b9a8bfad2a7df"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "325"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"145-4qVkbMqRXhu/MUKHYKBO+HRtpn4\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 15:08:11 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"path\": \"/api/v1/topic/66351469fa5b9a8bfad2a7df\",\n    \"statusCode\": 200,\n    \"result\": {\n        \"_id\": \"66351469fa5b9a8bfad2a7df\",\n        \"name\": \"topic name postman\",\n        \"icon\": \"icon_name\",\n        \"level\": 1,\n        \"color\": \"#00000\",\n        \"questions\": [\n            \"66352099aed99b367f963d86\"\n        ],\n        \"createdAt\": \"2024-05-03T16:44:25.922Z\",\n        \"updatedAt\": \"2024-05-03T17:36:25.308Z\",\n        \"__v\": 0\n    }\n}"
+								},
+								{
+									"name": "/:id Wrong ID",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{host}}/api/v1/topic/:id",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"topic",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "66351469fa5b9a8bfad2a7d"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "112"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"70-5ipLesAR3GUZSNR5Z3VaWqLD3Io\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 15:08:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": false,\n    \"statusCode\": 400,\n    \"path\": \"/api/v1/topic/66351469fa5b9a8bfad2a7d\",\n    \"message\": \"ERROR_GETTING_TOPIC\"\n}"
+								}
+							]
 						}
 					]
 				},
@@ -103,11 +876,21 @@
 						{
 							"name": "/:topicId",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \r\n    \"name\": {\r\n        \"eng\": \"basic list2 (pm)\",\r\n        \"spa\": \"lista basica2 (pm)\"\r\n    },\r\n    \"questionDescription\":{\r\n        \"eng\": \"What html tag is used for the ordered list.2 (pm)\",\r\n        \"spa\":\"Que etiqueta de html se utiliza para la lista ordenada.2 (pm)\"\r\n    },\r\n    \"type\": \"text\"\r\n}",
+									"raw": "{\r\n    \r\n    \"name\": {\r\n        \"eng\": \"basic list2 example\",\r\n        \"spa\": \"lista basica2 example\"\r\n    },\r\n    \"questionDescription\":{\r\n        \"eng\": \"What html tag is used for the ordered list.2 example\",\r\n        \"spa\":\"Que etiqueta de html se utiliza para la lista ordenada.2 example\"\r\n    },\r\n    \"type\": \"text\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -128,12 +911,235 @@
 									"variable": [
 										{
 											"key": "topicId",
-											"value": "66351469fa5b9a8bfad2a7df"
+											"value": "6644ce2ce2ec1211d1fb0637"
 										}
 									]
-								}
+								},
+								"description": "REQUIRE ADMIN ROLE\n\nSe crea una Question en la db y se pushea dicha QuestionID al topic que se asigna por param."
 							},
-							"response": []
+							"response": [
+								{
+									"name": "/:topicId OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \r\n    \"name\": {\r\n        \"eng\": \"basic list2 example\",\r\n        \"spa\": \"lista basica2 example\"\r\n    },\r\n    \"questionDescription\":{\r\n        \"eng\": \"What html tag is used for the ordered list.2 example\",\r\n        \"spa\":\"Que etiqueta de html se utiliza para la lista ordenada.2 example\"\r\n    },\r\n    \"type\": \"text\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3080/api/v1/question/:topicId",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3080",
+											"path": [
+												"api",
+												"v1",
+												"question",
+												":topicId"
+											],
+											"variable": [
+												{
+													"key": "topicId",
+													"value": "66351469fa5b9a8bfad2a7d"
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "531"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"213-dbEHZfoITQUhuljAzlA4DlXmirI\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 16:16:35 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"path\": \"/api/v1/question/66351469fa5b9a8bfad2a7df\",\n    \"statusCode\": 201,\n    \"result\": {\n        \"name\": {\n            \"eng\": \"basic list2 example\",\n            \"spa\": \"lista basica2 example\",\n            \"_id\": \"6644dfe33ae3ec60ed5af523\"\n        },\n        \"questionDescription\": {\n            \"eng\": \"What html tag is used for the ordered list.2 example\",\n            \"spa\": \"Que etiqueta de html se utiliza para la lista ordenada.2 example\",\n            \"_id\": \"6644dfe33ae3ec60ed5af524\"\n        },\n        \"type\": \"text\",\n        \"choices\": [],\n        \"_id\": \"6644dfe33ae3ec60ed5af522\",\n        \"createdAt\": \"2024-05-15T16:16:35.663Z\",\n        \"updatedAt\": \"2024-05-15T16:16:35.663Z\",\n        \"__v\": 0\n    }\n}"
+								},
+								{
+									"name": "/:topicId Wrong missing text field",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \r\n    \"name\": {\r\n        \"eng\": \"basic list2 example\",\r\n        \"spa\": \"lista basica2 example\"\r\n    },\r\n    \"questionDescription\":{\r\n        \"eng\": \"What html tag is used for the ordered list.2 example\",\r\n        \"spa\":\"Que etiqueta de html se utiliza para la lista ordenada.2 example\"\r\n    }\r\n    \r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/question/:topicId",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"question",
+												":topicId"
+											],
+											"variable": [
+												{
+													"key": "topicId",
+													"value": "66351469fa5b9a8bfad2a7df"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "118"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"76-+JIULcMkXGkL1KeoGaahbfSAwOA\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 17:39:30 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": false,\n    \"statusCode\": 400,\n    \"path\": \"/api/v1/question/66351469fa5b9a8bfad2a7df\",\n    \"message\": \"Bad Request Exception\"\n}"
+								},
+								{
+									"name": "/:topicId Wrong ID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \r\n    \"name\": {\r\n        \"eng\": \"basic list2 example\",\r\n        \"spa\": \"lista basica2 example\"\r\n    },\r\n    \"questionDescription\":{\r\n        \"eng\": \"What html tag is used for the ordered list.2 example\",\r\n        \"spa\":\"Que etiqueta de html se utiliza para la lista ordenada.2 example\"\r\n    },\r\n    \"type\": \"text\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/question/:topicId",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"question",
+												":topicId"
+											],
+											"variable": [
+												{
+													"key": "topicId",
+													"value": "66351469fa5b9a8bfad2a7d"
+												}
+											]
+										}
+									},
+									"status": "Unauthorized",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "43"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2b-dGnJzt6gv1nJjX6DJ9RztDWptng\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 17:46:02 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Unauthorized\",\n    \"statusCode\": 401\n}"
+								}
+							]
 						}
 					]
 				},
@@ -143,11 +1149,21 @@
 						{
 							"name": "/:questionId",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \r\n    \"description\": {\r\n        \"eng\": \"choice 1  (pm)\",\r\n        \"spa\": \"opcion 1 (pm)\"\r\n    },\r\n    \"correct\": false\r\n}",
+									"raw": "{\r\n    \r\n    \"description\": {\r\n        \"eng\": \"choice 1  example\",\r\n        \"spa\": \"opcion 1 example\"\r\n    },\r\n    \"correct\": false\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -168,198 +1184,237 @@
 									"variable": [
 										{
 											"key": "topicId",
-											"value": "66352099aed99b367f963d86"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "/auth",
-					"item": [
-						{
-							"name": "/register",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"firstname\": \"Sofia\",\r\n  \"lastname\": \"Vigna\",\r\n  \"email\": \"sofiavign@gmail.com\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}/auth/register",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"auth",
-										"register"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "/code",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"email\": \"sofiavign@gmail.com\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}/auth/code",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"auth",
-										"code"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "/token",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"email\": \"sofiavign@gmail.com\",\r\n  \"code\": \"908381\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{host}}/auth/token",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"auth",
-										"token"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "/user",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
+											"value": "6644f6ab3938c81f05b90ead"
 										}
 									]
 								},
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "{{host}}/auth/user",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"auth",
-										"user"
-									]
-								}
+								"description": "REQUIRE ADMIN ROLE\n\nSe crea un Choice en la db y se pushea dicho ChoiceID a la Question que se envia por param."
 							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "/user",
-					"item": [
-						{
-							"name": "/admin/:id",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": ""
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "/me",
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{host}}/user/me",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										"user",
-										"me"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "New Request",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{host}}/api/v1/question/:topicId",
-							"host": [
-								"{{host}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"question",
-								":topicId"
-							],
-							"variable": [
+							"response": [
 								{
-									"key": "topicId",
-									"value": ""
+									"name": "/:questionId Ok",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \r\n    \"description\": {\r\n        \"eng\": \"choice 1  example\",\r\n        \"spa\": \"opcion 1 example\"\r\n    },\r\n    \"correct\": false\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:3080/api/v1/choice/:topicId",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "3080",
+											"path": [
+												"api",
+												"v1",
+												"choice",
+												":topicId"
+											],
+											"variable": [
+												{
+													"key": "topicId",
+													"value": "6644f6ab3938c81f05b90ead"
+												}
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "327"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"147-36PR3ISn1s1cAbzRy/U2+4tHhAo\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 17:54:13 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": true,\n    \"path\": \"/api/v1/choice/6644f6ab3938c81f05b90ead\",\n    \"statusCode\": 201,\n    \"result\": {\n        \"description\": {\n            \"eng\": \"choice 1  example\",\n            \"spa\": \"opcion 1 example\",\n            \"_id\": \"6644f6c53938c81f05b90eb3\"\n        },\n        \"correct\": false,\n        \"_id\": \"6644f6c53938c81f05b90eb2\",\n        \"createdAt\": \"2024-05-15T17:54:13.312Z\",\n        \"updatedAt\": \"2024-05-15T17:54:13.312Z\",\n        \"__v\": 0\n    }\n}"
+								},
+								{
+									"name": "/:questionId Wrong missing correct field",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \r\n    \"description\": {\r\n        \"eng\": \"choice 1  example\",\r\n        \"spa\": \"opcion 1 example\"\r\n    }\r\n    \r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/choice/:topicId",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"choice",
+												":topicId"
+											],
+											"variable": [
+												{
+													"key": "topicId",
+													"value": "6644f6ab3938c81f05b90ead"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "116"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"74-UzgZMpMt4Ac0EIxPZDfR4/8VYW0\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 17:55:02 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": false,\n    \"statusCode\": 400,\n    \"path\": \"/api/v1/choice/6644f6ab3938c81f05b90ead\",\n    \"message\": \"Bad Request Exception\"\n}"
+								},
+								{
+									"name": "/:questionId Wrong ID",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \r\n    \"description\": {\r\n        \"eng\": \"choice 1  example\",\r\n        \"spa\": \"opcion 1 example\"\r\n    },\r\n    \"correct\": false\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{host}}/api/v1/choice/:topicId",
+											"host": [
+												"{{host}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"choice",
+												":topicId"
+											],
+											"variable": [
+												{
+													"key": "topicId",
+													"value": "6644f6ab3938c81f05b90ea"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "116"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"74-ga4jJdasd2a03TUn31kisJP+f6c\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 15 May 2024 17:55:39 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": false,\n    \"statusCode\": 400,\n    \"path\": \"/api/v1/choice/6644f6ab3938c81f05b90ea\",\n    \"message\": \"ERROR_GETTING_QUESTION\"\n}"
 								}
 							]
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		}

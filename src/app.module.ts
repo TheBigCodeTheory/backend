@@ -21,7 +21,6 @@ import { UserModule } from './resources/user/user.module';
     TopicModule,
     UserQuestionChoiceModule,
     TopicsQuestionsHistoryModule,
-
     AuthModule,
     UserModule,
   ],

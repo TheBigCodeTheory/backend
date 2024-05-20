@@ -23,8 +23,16 @@ export class AuthController {
 
   @Version('1')
   @Post('/register')
-  register(@Body() CreateUserDto: CreateUserDto) {
-    return this.authService.register(CreateUserDto);
+  async register(@Body() CreateUserDto: CreateUserDto) {
+    const session = await this.dbRepository.getSessionWithTransaction();
+    try {
+      const response = await this.authService.register(CreateUserDto, session);
+      await session.commitTransaction();
+      return response;
+    } catch (error) {
+      session.abortTransaction();
+      throw error;
+    }
   }
 
   @Version('1')
