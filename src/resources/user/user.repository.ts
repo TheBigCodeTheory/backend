@@ -38,16 +38,13 @@ export class UserRepository {
   async addUserTopic(
     userId: MongoObjectId,
     topicsQuestionHistoryId: MongoObjectId,
-    session: ClientSession,
   ): Promise<User> {
+    console.log({ topicsQuestionHistoryId, userId });
+
     try {
-      return await this.userModel.findByIdAndUpdate(
-        userId,
-        {
-          $push: { topicsQuestionsHistory: topicsQuestionHistoryId },
-        },
-        { session },
-      );
+      return await this.userModel.findByIdAndUpdate(userId, {
+        $push: { topicsQuestionsHistory: topicsQuestionHistoryId },
+      });
     } catch (error) {
       console.log('ERROR_ADDING_USER_TOPIC', error);
       throw new HttpException(

@@ -12,8 +12,6 @@ import { UserModule } from '../user/user.module';
 import { MailerService } from '../mail/mailer.service';
 import { JwtStrategy } from './passport/jwt.strategy';
 import { DbModule } from '../db/db.module';
-import { TopicsQuestionsHistoryModule } from '../topics-questions-history/topics-questions-history.module';
-import { TopicsQuestionsHistoryService } from '../topics-questions-history/topics-questions-history.service';
 
 @Module({
   imports: [
@@ -27,14 +25,12 @@ import { TopicsQuestionsHistoryService } from '../topics-questions-history/topic
     }),
     UserModule,
     DbModule,
-    TopicsQuestionsHistoryModule,
   ],
   controllers: [AuthController],
   providers: [
     AuthService,
     AuthRepository,
     UserService,
-    TopicsQuestionsHistoryService,
     MailerService,
     JwtStrategy,
   ],

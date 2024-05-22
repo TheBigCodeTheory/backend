@@ -33,12 +33,10 @@ export class UserService {
   async addUserTopic(
     userId: MongoObjectId,
     topicsQuestionHistoryId: MongoObjectId,
-    session?: ClientSession,
   ) {
     return await this.userRepository.addUserTopic(
       userId,
       topicsQuestionHistoryId,
-      session,
     );
   }
 

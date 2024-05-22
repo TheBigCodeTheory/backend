@@ -9,6 +9,8 @@ import {
 } from './entities/topics-questions-history.entity';
 import { UserModule } from '../user/user.module';
 import { UserService } from '../user/user.service';
+import { TopicModule } from '../topic/topic.module';
+import { TopicService } from '../topic/topic.service';
 
 @Module({
   imports: [
@@ -19,12 +21,14 @@ import { UserService } from '../user/user.service';
       },
     ]),
     UserModule,
+    TopicModule,
   ],
   controllers: [TopicsQuestionsHistoryController],
   providers: [
     TopicsQuestionsHistoryService,
     TopicsQuestionsHistoryRepository,
     UserService,
+    TopicService,
   ],
   exports: [
     TopicsQuestionsHistoryService,
