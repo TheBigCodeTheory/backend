@@ -7,8 +7,8 @@ export type UserQuestionChoiceDocument = HydratedDocument<UserQuestionChoice>;
 
 @Schema({ timestamps: true })
 export class UserQuestionChoice extends Document {
-  @Prop({ type: [{ type: Types.ObjectId, ref: 'Question' }] })
-  questions: Question;
+  @Prop({ type: Types.ObjectId, ref: 'Question' })
+  question: Question;
   /**
    * @description show the choices selected by the user in case that i want to show that in the UI history.
    */
