@@ -5,6 +5,7 @@ import { TopicsQuestionsHistory } from './entities/topics-questions-history.enti
 import { UserService } from '../user/user.service';
 import { MongoObjectId } from 'src/lib/common/types';
 import { TopicService } from '../topic/topic.service';
+import { ObjectId } from 'mongoose';
 
 @Injectable()
 export class TopicsQuestionsHistoryService {
@@ -26,5 +27,19 @@ export class TopicsQuestionsHistoryService {
     });
     await this.userService.addUserTopic(userId, userTopic._id);
     return userTopic;
+  }
+
+  async findByTopic(userId: ObjectId, topicId: ObjectId): Promise<any> {
+    const user = await this.userService.findById(userId);
+    const userPopulated = await user.populate([
+      {
+        path: 'topicsQuestionsHistory',
+        model: 'TopicsQuestionsHistory',
+      },
+    ]);
+
+    return userPopulated.topicsQuestionsHistory.find(
+      (history) => String(history.topic) === String(topicId),
+    );
   }
 }

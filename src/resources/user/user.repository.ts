@@ -54,7 +54,7 @@ export class UserRepository {
     }
   }
 
-  async findById(userId: MongoObjectId): Promise<User> {
+  async findById(userId: ObjectId): Promise<User> {
     try {
       return await this.userModel.findById(userId);
     } catch (error) {

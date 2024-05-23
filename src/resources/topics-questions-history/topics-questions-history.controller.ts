@@ -2,6 +2,7 @@ import {
   Controller,
   Param,
   Patch,
+  Post,
   Request,
   UseGuards,
   Version,
@@ -28,4 +29,14 @@ export class TopicsQuestionsHistoryController {
       topic: topicId,
     });
   }
+
+  @Version('1')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles([ROLE.USER])
+  @Post('/:topicId/:questionId')
+  async addQuestion(
+    @Request() req,
+    @Param('topicId') topicId: ObjectId,
+    @Param('questionId') questionId: ObjectId,
+  ) {}
 }
