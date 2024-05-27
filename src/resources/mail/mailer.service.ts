@@ -33,7 +33,7 @@ export class MailerService {
         .setTemplateId('vywj2lpdx0jl7oqz')
         .setPersonalization(personalization);
 
-      await mailerSend.email.send(emailParams);
+      // await mailerSend.email.send(emailParams);
     } catch (error) {
       console.log('ERROR_SENDING_CODE', error);
       throw new HttpException('ERROR_SENDING_CODE', HttpStatus.BAD_REQUEST);
