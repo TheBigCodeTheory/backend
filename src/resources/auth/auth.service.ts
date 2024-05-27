@@ -10,7 +10,6 @@ import { MailerService } from '../mail/mailer.service';
 import { Auth } from './entities/auth.entity';
 import { ClientSession } from 'mongoose';
 import { MongoObjectId } from 'src/lib/common/types';
-import { TopicsQuestionsHistoryService } from '../topics-questions-history/topics-questions-history.service';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +18,6 @@ export class AuthService {
     private readonly mailerService: MailerService,
     private readonly jwtService: JwtService,
     private readonly userService: UserService,
-    private readonly topicsQuestionHistoryService: TopicsQuestionsHistoryService,
   ) {}
 
   async register(
@@ -37,7 +35,6 @@ export class AuthService {
       createUserDto,
       session,
     );
-    await this.topicsQuestionHistoryService.create(user._id, {}, session);
     await this.mailerService.sendVerificationCode(createUserDto!.email, code);
     return user;
   }

@@ -22,7 +22,7 @@ export class UserService {
     return await this.userRepository.findAuth(auth);
   }
 
-  async findById(userId: MongoObjectId) {
+  async findById(userId: ObjectId) {
     return await this.userRepository.findById(userId);
   }
 
@@ -33,12 +33,10 @@ export class UserService {
   async addUserTopic(
     userId: MongoObjectId,
     topicsQuestionHistoryId: MongoObjectId,
-    session?: ClientSession,
   ) {
     return await this.userRepository.addUserTopic(
       userId,
       topicsQuestionHistoryId,
-      session,
     );
   }
 

@@ -46,6 +46,10 @@ export class QuestionService {
     return `This action returns a #${id} question`;
   }
 
+  async findById(questionId: ObjectId) {
+    return await this.questionRepository.findById(questionId);
+  }
+
   update(id: number, updateQuestionDto: UpdateQuestionDto) {
     return `This action updates a #${id} question`;
   }

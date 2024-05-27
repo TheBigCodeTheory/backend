@@ -49,4 +49,13 @@ export class QuestionRepository {
       throw new HttpException('ERROR_GETTING_QUESTION', HttpStatus.BAD_REQUEST);
     }
   }
+
+  async findById(questionId: ObjectId): Promise<Question> {
+    try {
+      return await this.questionModel.findById(questionId);
+    } catch (error) {
+      console.log('ERROR_FINDING_QUESTION', error);
+      throw new HttpException('ERROR_FINDING_QUESTION', HttpStatus.BAD_REQUEST);
+    }
+  }
 }

@@ -13,8 +13,9 @@ export type TopicsQuestionsHistoryDocument =
  * Here we have the topic selected (an objectID where the populate brings the information) and the user answers to this topic
  */
 export class TopicsQuestionsHistory extends Document {
-  @Prop({ type: [{ type: Types.ObjectId, ref: 'Topic' }] })
+  @Prop({ type: Types.ObjectId, ref: 'Topic' })
   topic: Topic;
+
   @Prop({ type: [{ type: Types.ObjectId, ref: 'UserQuestionChoice' }] })
   userQuestionChoices: UserQuestionChoice[];
 }

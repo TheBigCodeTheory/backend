@@ -28,7 +28,7 @@ export class User extends Document {
   @Prop({ unique: true, type: Types.ObjectId, ref: 'Auth' })
   auth: Auth;
 
-  @Prop({ type: Types.ObjectId, ref: 'TopicsQuestionsHistory' })
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'TopicsQuestionsHistory' }] })
   topicsQuestionsHistory: TopicsQuestionsHistory[];
 }
 
